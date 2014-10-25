@@ -1,4 +1,9 @@
+plugins {
+    id "com.jfrog.bintray" version "0.6"
+}
+
 apply plugin: 'groovy'
+apply plugin: 'maven-publish'
 
 group = "cz.orany"
 version = "0.1"
@@ -8,33 +13,17 @@ repositories {
     jcenter()
 }
 
-sourceSets {
-    main.groovy.srcDir 'src'
-    test.groovy.srcDir 'test'
-}
-
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.2.1'
-    testCompile 'junit:junit:4.10'
+    compile 'org.codehaus.groovy:groovy-all:2.3.7'
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.10'
+    gradleVersion = '2.1'
 }
 
 // code below this can be safely removed if you don't want publish library ever
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.3'
-    }
-}
-
-apply plugin: 'maven-publish'
-apply plugin: 'bintray'
 
 publishing {
     publications {
